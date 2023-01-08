@@ -11,7 +11,27 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      appBar: AppBar(
+        title: const Text('News app'),
+        actions: [
+          MaterialButton(
+            onPressed: () {  },
+            child: const Icon(Icons.refresh_rounded),
+          ),
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            child: Row(
+              children: [
+                Text("Top Headlines"),
+              ],
+            ),
+          ),
+
+        ],
+      )
     );
   }
 }

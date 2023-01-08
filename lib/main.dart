@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/home.dart';
+import 'package:news_app/screens/login.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: Home(),
     );

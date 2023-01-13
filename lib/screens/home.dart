@@ -54,8 +54,8 @@ class HomePage extends StatelessWidget {
                     itemCount: newsController.articleList.length,
                     itemBuilder: (context, index) {
                       return Card(
-                        elevation: 50,
-                        shadowColor: Colors.black,
+                        // elevation: 50,
+                        // shadowColor: Colors.black,
                         color: Colors.blue[600],
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
                                     elevation: 0,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(10)),
+                                            BorderRadius.circular(20)),
                                     child: const SizedBox(
                                       height: 200,
                                       width: double.infinity,

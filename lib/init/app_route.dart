@@ -2,6 +2,7 @@ import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
 
 import '../screens/home.dart';
+import '../screens/news_article.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -10,6 +11,10 @@ class AppRoutes {
     GetPage(
       name: '/homepage',
       page: () => HomePage(),
+    ),
+    GetPage(
+      name: "/newsArticle",
+      page: () => NewsArticle(),
     )
   ];
 }

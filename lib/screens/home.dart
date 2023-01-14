@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:news_app/components/app_bar.dart';
 import 'package:news_app/models/articles.dart';
 import '../controller/newscontroller.dart';
 
@@ -12,18 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[400],
-      appBar: AppBar(
-        backgroundColor: Colors.blue[900],
-        title: Text(
-          "NEWSAPP",
-          style: TextStyle(
-            color: Colors.blue[300],
-            fontFamily: 'avenir',
-            fontSize: 40,
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-      ),
+      appBar: AppBarMode(title: "NewsApp",),
       body: Column(
         children: [
           Padding(
@@ -47,7 +37,7 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: Obx(
               () => Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(left: 8,right: 8,bottom: 8),
                 child: MasonryGridView.count(
                     crossAxisCount: 1,
                     mainAxisSpacing: 8,
@@ -90,7 +80,7 @@ class HomePage extends StatelessWidget {
                                     .toString(),
                                 style: TextStyle(
                                   fontSize: 25,
-                                  color: Colors.blue[100],
+                                  color: Colors.blue[50],
                                   fontWeight: FontWeight.w500,
                                 ), //Textstyle
                               ), //Text
@@ -103,47 +93,36 @@ class HomePage extends StatelessWidget {
                                     "",
                                 style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.blue[200],
+                                  color: Colors.blue[100],
                                 ),
                               ), //Text
                               const SizedBox(
                                 height: 10,
                               ), //SizedBox
-                              // SizedBox(
-                              //   width: 100,
-                              //
-                              //   child: ElevatedButton(
-                              //     onPressed: () => 'Null',
-                              //     style: ButtonStyle(
-                              //         backgroundColor:
-                              //         MaterialStateProperty.all(Colors.green)),
-                              //     child: Padding(
-                              //       padding: const EdgeInsets.all(4),
-                              //       child: Row(
-                              //         children: const [
-                              //           Icon(Icons.touch_app),
-                              //           Text('Visit')
-                              //         ],
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   // RaisedButton is deprecated and should not be used
-                              //   // Use ElevatedButton instead
-                              //
-                              //   // child: RaisedButton(
-                              //   //   onPressed: () => null,
-                              //   //   color: Colors.green,
-                              //   //   child: Padding(
-                              //   //     padding: const EdgeInsets.all(4.0),
-                              //   //     child: Row(
-                              //   //       children: const [
-                              //   //         Icon(Icons.touch_app),
-                              //   //         Text('Visit'),
-                              //   //       ],
-                              //   //     ), //Row
-                              //   //   ), //Padding
-                              //   // ), //RaisedButton
-                              // ) //SizedBox
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    MaterialButton(
+                                      onPressed: () {
+                                        Get.toNamed("/newsArticle?websiteUrl=${newsController.articleList[index]!.url
+                                            .toString()}");
+                                      },
+                                      color: Colors.blue[800],
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'Learn More',
+                                              style: TextStyle(
+                                                color: Colors.blue[50],
+                                              ),
+                                            ),
+                                          ],
+                                        ), //Row
+                                      ), //Padding
+                                    ),
+                                  ]) //SizedBox
                             ],
                           ), //Column
                         ), //SizedBox

@@ -2,6 +2,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/models/query_types.dart';
+import 'package:news_app/models/themes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controller/newscontroller.dart';
 
@@ -16,10 +18,25 @@ class _SideBarContentState extends State<SideBarContent> {
   NewsController newsController = Get.put(NewsController());
 
   var query = Queries();
+  RxBool _isLightTheme = false.obs;
 
-  String co = "in";
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  String ca = "none";
+  _saveThemeStatus() async {
+    SharedPreferences pref = await _prefs;
+    pref.setBool('theme', _isLightTheme.value);
+  }
+
+  _getThemeStatus() async {
+    var _isLight = _prefs.then((SharedPreferences prefs) {
+      return prefs.getBool('theme') != null ? prefs.getBool('theme') : true;
+    }).obs;
+    _isLightTheme.value = (await _isLight.value)!;
+    Get.changeThemeMode(_isLightTheme.value ? ThemeMode.light : ThemeMode.dark);
+  }
+  SideBarContent() {
+    _getThemeStatus();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +119,6 @@ class _SideBarContentState extends State<SideBarContent> {
                         onChanged: (ctr) {
                           newsController.changeCountry(ctr);
                           newsController.fetchNews();
-                          setState(()=>co=ctr.toString());
                         },
                       ),
                     ),
@@ -146,7 +162,6 @@ class _SideBarContentState extends State<SideBarContent> {
                       onChanged: (ctr) {
                         newsController.changeCategory(ctr);
                         newsController.fetchNews();
-                        setState(()=>ca=ctr.toString());
                       },
                     ),
                   ),
@@ -154,7 +169,20 @@ class _SideBarContentState extends State<SideBarContent> {
               ),
             ],
           ),
-        )
+        ),
+        ObxValue(
+              (data) => Switch(
+            value: _isLightTheme.value,
+            onChanged: (val) {
+              _isLightTheme.value = val;
+              Get.changeThemeMode(
+                _isLightTheme.value ? ThemeMode.light : ThemeMode.dark,
+              );
+              _saveThemeStatus();
+            },
+          ),
+          false.obs,
+        ),
       ],
     );
   }

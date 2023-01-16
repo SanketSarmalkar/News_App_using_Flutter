@@ -95,7 +95,18 @@ class HomePage extends StatelessWidget {
                               ), //Text
                               const SizedBox(
                                 height: 10,
-                              ), //SizedBox
+                              ),
+                              Text(
+                                newsController.articleList[index]!.publishedAt.toString(),
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.blue[100],
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
                               Text(
                                 newsController.articleList[index]!.description
                                         .toString() ??

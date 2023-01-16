@@ -24,49 +24,6 @@ class AppBarMode extends StatelessWidget with PreferredSizeWidget {
           fontWeight: FontWeight.w900,
         ),
       ),
-      actions: [
-        Obx(
-          () => Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton2(
-                dropdownWidth: 125,
-                itemPadding: const EdgeInsets.all(4),
-                icon: Image.asset(
-                  'icons/flags/png/${newsController.country}.png',
-                  package: 'country_icons',
-                  height: 20,
-                  width: 30,
-                ),
-                items: query.countries
-                    .map((String ctr) => DropdownMenuItem(
-                          value: ctr,
-                          child: Row(children: [
-                            Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Image.asset(
-                                'icons/flags/png/$ctr.png',
-                                package: 'country_icons',
-                                height: 20,
-                                width: 30,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Text(ctr.toString()),
-                            ),
-                          ]),
-                        ))
-                    .toList(),
-                onChanged: (ctr) {
-                  newsController.changeCountry(ctr);
-                  newsController.fetchNews();
-                },
-              ),
-            ),
-          ),
-        )
-      ],
 
     );
   }

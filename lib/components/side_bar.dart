@@ -5,10 +5,21 @@ import 'package:news_app/models/query_types.dart';
 
 import '../controller/newscontroller.dart';
 
-class SideBarContent extends StatelessWidget {
+class SideBarContent extends StatefulWidget {
   SideBarContent({Key? key}) : super(key: key);
+
+  @override
+  State<SideBarContent> createState() => _SideBarContentState();
+}
+
+class _SideBarContentState extends State<SideBarContent> {
   NewsController newsController = Get.put(NewsController());
+
   var query = Queries();
+
+  String co = "in";
+
+  String ca = "none";
 
   @override
   Widget build(BuildContext context) {
@@ -47,33 +58,84 @@ class SideBarContent extends StatelessWidget {
           padding: const EdgeInsets.only(left: 12),
           child: Row(
             children: [
-              Text("Country: "),
-              Obx(
-                    () => Padding(
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.location_city),
+                    Text("Country:"),
+                  ],
+                ),
+              ),
+              Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: DropdownButtonHideUnderline(
-                    child: DropdownButton2(
+                    child: Obx(
+                      ()=> DropdownButton2(
+                        value: newsController.country.toString(),
+                        dropdownWidth: 125,
+                        itemPadding: const EdgeInsets.all(4),
+
+                        items: query.countries
+                            .map((String ctr) => DropdownMenuItem(
+                          value: ctr,
+                          child: Row(children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text(ctr.toString(),
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                              ),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Image.asset(
+                                'icons/flags/png/$ctr.png',
+                                package: 'country_icons',
+                                height: 20,
+                                width: 30,
+                              ),
+                            ),
+                          ]),
+                        ))
+                            .toList(),
+                        onChanged: (ctr) {
+                          newsController.changeCountry(ctr);
+                          newsController.fetchNews();
+                          setState(()=>co=ctr.toString());
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 12),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.category),
+                    Text("Category:"),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4),
+                child: DropdownButtonHideUnderline(
+                  child: Obx(
+                    ()=> DropdownButton2(
+                      value: newsController.category.toString(),
                       dropdownWidth: 125,
                       itemPadding: const EdgeInsets.all(4),
-                      icon: Image.asset(
-                        'icons/flags/png/${newsController.country}.png',
-                        package: 'country_icons',
-                        height: 20,
-                        width: 30,
-                      ),
-                      items: query.countries
+                      items: query.categories
                           .map((String ctr) => DropdownMenuItem(
                         value: ctr,
                         child: Row(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Image.asset(
-                              'icons/flags/png/$ctr.png',
-                              package: 'country_icons',
-                              height: 20,
-                              width: 30,
-                            ),
-                          ),
                           Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Text(ctr.toString()),
@@ -82,42 +144,11 @@ class SideBarContent extends StatelessWidget {
                       ))
                           .toList(),
                       onChanged: (ctr) {
-                        newsController.changeCountry(ctr);
+                        newsController.changeCategory(ctr);
                         newsController.fetchNews();
+                        setState(()=>ca=ctr.toString());
                       },
                     ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 12),
-          child: Row(
-            children: [
-              const Text("Category:"),
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton2(
-                    dropdownWidth: 125,
-                    itemPadding: const EdgeInsets.all(4),
-                    items: query.categories
-                        .map((String ctr) => DropdownMenuItem(
-                      value: ctr,
-                      child: Row(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Text(ctr.toString()),
-                        ),
-                      ]),
-                    ))
-                        .toList(),
-                    onChanged: (ctr) {
-                      newsController.changeCategory(ctr);
-                      newsController.fetchNews();
-                    },
                   ),
                 ),
               ),

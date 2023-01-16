@@ -8,7 +8,7 @@ class NewsController extends GetxController{
   var totalRes = 1.obs;
   var status = "".obs;
   var country = "in".obs;
-  var category = "".obs;
+  var category = "none".obs;
   //var welcome = <Welcome>[].obs;
 
   @override
@@ -28,5 +28,8 @@ class NewsController extends GetxController{
 
   void changeCountry(var ctr) {
     country.value = ctr;
+  }
+  void changeCategory(var ctr) {
+    category.value = ctr;
   }
 }

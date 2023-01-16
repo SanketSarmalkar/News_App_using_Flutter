@@ -15,7 +15,9 @@ class _NewsArticleState extends State<NewsArticle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarMode(title: "",),
+      appBar: AppBar(
+        backgroundColor: Colors.blue[900],
+        ),
       body: WebViewApp(websiteUrl: Get.parameters['websiteUrl']!,),
       );
   }

@@ -7,6 +7,8 @@ class NewsController extends GetxController{
   var articleList = <Article?>[].obs;
   var totalRes = 1.obs;
   var status = "".obs;
+  var country = "in".obs;
+  var category = "".obs;
   //var welcome = <Welcome>[].obs;
 
   @override
@@ -16,11 +18,15 @@ class NewsController extends GetxController{
   }
 
   void fetchNews() async{
-     var news = await RemoteServices.fetchNews();
+     var news = await RemoteServices.fetchNews(country, category);
      if(news != null){
        articleList.value = news.articles!;
        totalRes.value = news.totalResults!;
        status.value = news.status!;
      }
+  }
+
+  void changeCountry(var ctr) {
+    country.value = ctr;
   }
 }

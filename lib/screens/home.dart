@@ -1,19 +1,96 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:news_app/components/app_bar.dart';
 import 'package:news_app/models/articles.dart';
+import 'package:news_app/models/query_types.dart';
 import '../controller/newscontroller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   NewsController newsController = Get.put(NewsController());
+  var query = Queries();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[400],
-      appBar: AppBarMode(title: "NewsApp",),
+      drawer: Drawer(
+        child: ListView(
+          padding: const EdgeInsets.all(0),
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(240, 13, 71, 161),
+              ), //BoxDecoration
+              child: UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: Color.fromARGB(100, 13, 71, 161)),
+                accountName: Text(
+                  "Sanket S.Sarmalkar",
+                  style: TextStyle(fontSize: 18),
+                ),
+                accountEmail: Text("sanket.sarmalkar2002@gmail.com"),
+                currentAccountPictureSize: Size.square(50),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Colors.indigo,
+                  child: Text(
+                    "SS",
+                    style: TextStyle(fontSize: 30.0, color: Colors.blue),
+                  ), //Text
+                ), //circleAvatar
+              ), //UserAccountDrawerHeader
+            ), //DrawerHeader
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text(' My Profile '),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            Row(
+              children: [
+                Text("Category:"),
+                Obx(
+                      () => Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2(
+                        dropdownWidth: 125,
+                        itemPadding: const EdgeInsets.all(4),
+                        icon: Image.asset(
+                          'icons/flags/png/${newsController.country}.png',
+                          package: 'country_icons',
+                          height: 20,
+                          width: 30,
+                        ),
+                        items: query.categories
+                            .map((String ctr) => DropdownMenuItem(
+                          value: ctr,
+                          child: Row(children: [
+                            Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Text(ctr.toString()),
+                            ),
+                          ]),
+                        ))
+                            .toList(),
+                        onChanged: (ctr) {
+                          newsController.changeCountry(ctr);
+                          newsController.fetchNews();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+      appBar: AppBarMode(
+        title: "NewsApp",
+      ),
       body: Column(
         children: [
           Padding(
@@ -21,9 +98,9 @@ class HomePage extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               color: Colors.blue[600],
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Text(
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
                   "Top Headlines",
                   style: TextStyle(
                     fontFamily: 'avenir',
@@ -37,7 +114,7 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: Obx(
               () => Padding(
-                padding: const EdgeInsets.only(left: 8,right: 8,bottom: 8),
+                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
                 child: MasonryGridView.count(
                     crossAxisCount: 1,
                     mainAxisSpacing: 8,
@@ -104,8 +181,8 @@ class HomePage extends StatelessWidget {
                                   children: [
                                     MaterialButton(
                                       onPressed: () {
-                                        Get.toNamed("/newsArticle?websiteUrl=${newsController.articleList[index]!.url
-                                            .toString()}");
+                                        Get.toNamed(
+                                            "/newsArticle?websiteUrl=${newsController.articleList[index]!.url.toString()}");
                                       },
                                       color: Colors.blue[800],
                                       child: Padding(

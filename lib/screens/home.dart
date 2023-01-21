@@ -114,7 +114,12 @@ class HomePage extends StatelessWidget {
                                     height: 10,
                                   ),
                                   Text(
-                                    newsController.articleList[index]!.publishedAt.toString(),
+                                    "Published On : ${
+                                      newsController
+                                          .articleList[index]!.publishedAt
+                                          .toString()
+                                          .substring(0, 19)
+                                    }",
                                     style: TextStyle(
                                       fontSize: 13,
                                       //color: Colors.blue[100],

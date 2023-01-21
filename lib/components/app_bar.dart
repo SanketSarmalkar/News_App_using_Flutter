@@ -2,32 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/models/query_types.dart';
 import '../controller/newscontroller.dart';
+import '../controller/theme_controller.dart';
 import 'package:country_icons/country_icons.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
-class AppBarMode extends StatelessWidget with PreferredSizeWidget {
+class AppBarMode extends StatefulWidget with PreferredSizeWidget {
   final String title;
   AppBarMode({Key? key, required this.title}) : super(key: key);
-  NewsController newsController = Get.put(NewsController());
-  var query = Queries();
 
   @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.blue[900],
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Colors.blue[300],
-          fontFamily: 'avenir',
-          fontSize: 40,
-          fontWeight: FontWeight.w900,
-        ),
-      ),
-
-    );
-  }
+  State<AppBarMode> createState() => _AppBarModeState();
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
+
+class _AppBarModeState extends State<AppBarMode> {
+  NewsController newsController = Get.put(NewsController());
+  ThemeController themeController = Get.put(ThemeController());
+
+  var query = Queries();
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      ()=> AppBar(
+        //backgroundColor: Colors.blue[900],
+        backgroundColor: themeController.themeColors[4],
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            //color: Colors.blue[300],
+            color: themeController.themeColors[0],
+            fontFamily: 'avenir',
+            fontSize: 40,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+
+      ),
+    );
+  }
+}
+
+// @override
+// Size get preferredSize => const Size.fromHeight(kToolbarHeight);

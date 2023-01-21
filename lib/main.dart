@@ -18,28 +18,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeData _darkTheme = ThemeData(
+  final ThemeData _darkTheme = ThemeData(
       accentColor: Colors.red,
       brightness: Brightness.dark,
-      primaryColor: Colors.amber,
-      buttonTheme: ButtonThemeData(
+      primaryColor: Colors.black,
+      buttonTheme: const ButtonThemeData(
         buttonColor: Colors.amber,
         disabledColor: Colors.grey,
       ));
 
-  ThemeData _lightTheme = ThemeData(
+  final ThemeData _lightTheme = ThemeData(
       accentColor: Colors.pink,
       brightness: Brightness.light,
       primaryColor: Colors.blue,
-      buttonTheme: ButtonThemeData(
+      buttonTheme: const ButtonThemeData(
         buttonColor: Colors.blue,
         disabledColor: Colors.grey,
       ));
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: _lightTheme,
-      darkTheme: _darkTheme,
+      // theme: _lightTheme,
+      // darkTheme: _darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.initial,

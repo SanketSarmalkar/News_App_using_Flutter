@@ -56,10 +56,9 @@ class Queries{
     'za',
   ];
   List<String> categories = [
-    "none",
+    'general',
     "business",
     'entertainment',
-    'general',
     'health',
     'science',
     'sports',

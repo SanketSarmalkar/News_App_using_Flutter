@@ -8,7 +8,7 @@ class NewsController extends GetxController{
   var totalRes = 1.obs;
   var status = "".obs;
   var country = "in".obs;
-  var category = "none".obs;
+  var category = "general".obs;
   //var welcome = <Welcome>[].obs;
 
   @override

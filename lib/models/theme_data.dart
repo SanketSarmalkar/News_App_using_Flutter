@@ -12,8 +12,8 @@ class ThemeColorData {
   final List<Color> darkColor =[
     Colors.white,
     Colors.black12,
-    Colors.black26,
-    Colors.black38,
+    Colors.grey,
+    Colors.white24,
     Colors.black,
   ];
 

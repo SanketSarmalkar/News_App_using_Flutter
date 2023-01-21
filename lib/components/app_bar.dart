@@ -27,6 +27,20 @@ class _AppBarModeState extends State<AppBarMode> {
   Widget build(BuildContext context) {
     return Obx(
       ()=> AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(
+                Icons.menu,
+                color: themeController.themeColors[0], // Change Custom Drawer Icon Color
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         //backgroundColor: Colors.blue[900],
         backgroundColor: themeController.themeColors[4],
         title: Text(

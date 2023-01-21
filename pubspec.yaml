@@ -44,6 +44,7 @@ dependencies:
   dropdown_button2: ^1.9.2
   collapsible_sidebar: ^2.0.3+2
   shared_preferences: ^2.0.16
+  animated_card: ^2.0.0
 
 dev_dependencies:
   flutter_test:

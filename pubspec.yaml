@@ -45,6 +45,7 @@ dependencies:
   collapsible_sidebar: ^2.0.3+2
   shared_preferences: ^2.0.16
   animated_card: ^2.0.0
+  firebase_auth: ^4.2.2
 
 dev_dependencies:
   flutter_test:

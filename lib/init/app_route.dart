@@ -1,12 +1,15 @@
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
 
-import '../screens/home.dart';
-import '../screens/news_article.dart';
+import '../screens/home/home.dart';
+import '../screens/authentication/login.dart';
+import '../screens/home/news_article.dart';
+import '../screens/authentication/signup.dart';
+import '../screens/wrapper.dart';
 
 class AppRoutes {
   AppRoutes._();
-  static const initial = '/homepage';
+  static const initial = '/wrapper';
   static final routes = [
     GetPage(
       name: '/homepage',
@@ -15,6 +18,18 @@ class AppRoutes {
     GetPage(
       name: "/newsArticle",
       page: () => NewsArticle(),
-    )
+    ),
+    GetPage(
+      name: "/login",
+      page: () => Login(),
+    ),
+    GetPage(
+      name: '/signup',
+      page: () => SignUp(),
+    ),
+    GetPage(
+      name: '/wrapper',
+      page: () => Wrapper(),
+    ),
   ];
 }

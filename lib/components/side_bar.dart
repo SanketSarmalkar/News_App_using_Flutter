@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/theme_controller.dart';
 import 'package:news_app/models/query_types.dart';
-import 'package:news_app/models/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controller/newscontroller.dart';

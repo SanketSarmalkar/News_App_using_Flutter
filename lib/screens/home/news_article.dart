@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/theme_controller.dart';
 
-import '../components/app_bar.dart';
-import '../components/news_content.dart';
+import '../../components/app_bar.dart';
+import '../../components/news_content.dart';
 
 class NewsArticle extends StatefulWidget {
   const NewsArticle({Key? key}) : super(key: key);

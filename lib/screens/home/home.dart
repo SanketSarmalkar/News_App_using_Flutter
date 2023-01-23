@@ -6,8 +6,8 @@ import 'package:news_app/components/app_bar.dart';
 import 'package:news_app/controller/theme_controller.dart';
 import 'package:news_app/models/articles.dart';
 import 'package:news_app/models/query_types.dart';
-import '../components/side_bar.dart';
-import '../controller/newscontroller.dart';
+import '../../components/side_bar.dart';
+import '../../controller/newscontroller.dart';
 import 'package:animated_card/animated_card.dart';
 
 class HomePage extends StatelessWidget {

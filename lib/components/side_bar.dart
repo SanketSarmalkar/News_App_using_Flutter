@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/theme_controller.dart';
 import 'package:news_app/models/query_types.dart';
+import 'package:news_app/services/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controller/newscontroller.dart';
@@ -17,6 +18,7 @@ class SideBarContent extends StatefulWidget {
 class _SideBarContentState extends State<SideBarContent> {
   NewsController newsController = Get.put(NewsController());
   ThemeController themeController = Get.put(ThemeController());
+  final AuthService authService = AuthService();
 
   var query = Queries();
 
@@ -74,7 +76,10 @@ class _SideBarContentState extends State<SideBarContent> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Row(
                     children: [
-                      Icon(Icons.location_pin,color: themeController.themeColors[0],),
+                      Icon(
+                        Icons.location_pin,
+                        color: themeController.themeColors[0],
+                      ),
                       Text(
                         "Country:",
                         style: TextStyle(color: themeController.themeColors[0]),
@@ -134,7 +139,10 @@ class _SideBarContentState extends State<SideBarContent> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Row(
                     children: [
-                      Icon(Icons.category, color: themeController.themeColors[0],),
+                      Icon(
+                        Icons.category,
+                        color: themeController.themeColors[0],
+                      ),
                       Text(
                         "Category:",
                         style: TextStyle(color: themeController.themeColors[0]),
@@ -159,7 +167,7 @@ class _SideBarContentState extends State<SideBarContent> {
                                       padding: const EdgeInsets.all(2.0),
                                       child: Text(
                                         ctr.toString(),
-                                        ),
+                                      ),
                                     ),
                                   ]),
                                 ))
@@ -180,7 +188,7 @@ class _SideBarContentState extends State<SideBarContent> {
             child: Row(
               children: [
                 Text(
-                  '${themeController.theme.toString()[0].toUpperCase()+themeController.theme.toString().substring(1,themeController.theme.toString().length)} Mode Enabled',
+                  '${themeController.theme.toString()[0].toUpperCase() + themeController.theme.toString().substring(1, themeController.theme.toString().length)} Mode Enabled',
                   style: TextStyle(color: themeController.themeColors[0]),
                 ),
                 ObxValue(
@@ -199,6 +207,37 @@ class _SideBarContentState extends State<SideBarContent> {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: MaterialButton(
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                BorderRadius.circular(20), // <-- Radius
+              ),
+              onPressed: () async{
+                dynamic result = await authService.signOut();
+                if(result!=null){
+                  Get.snackbar(
+                    "Error",
+                    "Error occured during Signing Out, Try Again",
+                    icon: Icon(Icons.error, color: Colors.white),
+                    backgroundColor: Colors.black12,
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }else{
+                  Get.snackbar(
+                    "Success",
+                    "Signed Out Successfully",
+                    icon: Icon(Icons.error, color: Colors.white),
+                    backgroundColor: Colors.black12,
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
+              },
+              child: Text("Sign Out", style: TextStyle(color: Colors.white),),
+              color: Color.fromARGB(240, 13, 71, 161),
+            ),
+          )
         ],
       ),
     );

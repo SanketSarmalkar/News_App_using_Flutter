@@ -228,7 +228,7 @@ class _SideBarContentState extends State<SideBarContent> {
                   Get.snackbar(
                     "Success",
                     "Signed Out Successfully",
-                    icon: Icon(Icons.error, color: Colors.white),
+                    icon: Icon(Icons.check, color: Colors.green),
                     backgroundColor: Colors.black12,
                     snackPosition: SnackPosition.BOTTOM,
                   );

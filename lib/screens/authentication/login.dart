@@ -15,6 +15,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(()=> Scaffold(
+      resizeToAvoidBottomInset: false,
         body: Container(
           color: Colors.grey,
           child: Center(
@@ -169,9 +170,6 @@ class Login extends StatelessWidget {
                               style: TextStyle(fontSize: 18),
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
                           MaterialButton(
                             onPressed: () {
                               Get.toNamed("/signup");
@@ -184,6 +182,47 @@ class Login extends StatelessWidget {
                               ],
                             ),
                           ),
+                          Text("Or sign In using"),
+                          MaterialButton(
+                            onPressed: (){},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset('images/google.png',height: 25,),
+                                ),
+                                Text("Google"),
+                              ],
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: (){},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset('images/Facebook.png',height: 25,),
+                                ),
+                                Text("Facebook"),
+                              ],
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: (){},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset('images/Microsoft.png',height: 25,),
+                                ),
+                                Text("Microsoft"),
+                              ],
+                            ),
+                          )
+
                         ],
                       ),
                     ),

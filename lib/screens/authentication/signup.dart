@@ -153,9 +153,9 @@ class SignUp extends StatelessWidget {
                                     backgroundColor: Colors.black12,
                                     snackPosition: SnackPosition.BOTTOM,
                                   );
-                                }else{
-                                  Get.back();
-                                }
+                                }if(_auth.emailVerified()){
+                                   emailInfoController.isVerified(true);
+                                 }
                               } else {
                                 emailInfoController.changeError(
                                     (emailInfoController.email.toString() == "")

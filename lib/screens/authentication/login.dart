@@ -6,16 +6,15 @@ import 'package:news_app/services/auth.dart';
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
 
-
   final _formkey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
   EmailInfoController emailInfoController = Get.put(EmailInfoController());
 
-
   @override
   Widget build(BuildContext context) {
-    return Obx(()=> Scaffold(
-      resizeToAvoidBottomInset: false,
+    return Obx(
+      () => Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           color: Colors.grey,
           child: Center(
@@ -28,22 +27,22 @@ class Login extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)),
                   width: 300,
                   child: Column(
-                    children: [
+                    children: const [
                       // Padding(
                       //   padding: const EdgeInsets.all(8.0),
                       //   child: Icon(Icons.newspaper,),
                       // ),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: EdgeInsets.all(20.0),
                         child: Center(
                             child: Text(
-                              "News App",
-                              style: TextStyle(
-                                  fontFamily: 'avenir',
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white),
-                            )),
+                          "News App",
+                          style: TextStyle(
+                              fontFamily: 'avenir',
+                              fontSize: 40,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white),
+                        )),
                       ),
                     ],
                   ),
@@ -91,7 +90,7 @@ class Login extends StatelessWidget {
                                 errorStyle: TextStyle(color: Colors.grey),
                               ),
                               onChanged: (val) {
-                                  emailInfoController.changeEmail(val);
+                                emailInfoController.changeEmail(val);
                               },
                             ),
                           ),
@@ -101,7 +100,8 @@ class Login extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(8.0),
                             child: TextFormField(
-                              obscureText: emailInfoController.showPassword.value,
+                              obscureText:
+                                  emailInfoController.showPassword.value,
                               decoration: InputDecoration(
                                 suffixIcon: GestureDetector(
                                   child: Icon(
@@ -137,25 +137,37 @@ class Login extends StatelessWidget {
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.circular(20), // <-- Radius
+                                  BorderRadius.circular(20), // <-- Radius
                             ),
                             color: Colors.grey,
                             onPressed: () async {
-                              if (emailInfoController.email!="" && emailInfoController.password.toString().length>=8) {
-                                dynamic result = await _auth
-                                    .signInWithEmailAndPassword(emailInfoController.email.toString(), emailInfoController.password.toString());
+                              if (emailInfoController.email != "" &&
+                                  emailInfoController.password
+                                          .toString()
+                                          .length >=
+                                      8) {
+                                dynamic result =
+                                    await _auth.signInWithEmailAndPassword(
+                                        emailInfoController.email.toString(),
+                                        emailInfoController.password
+                                            .toString());
                                 if (result == null) {
-                                  emailInfoController.changeError('Invalid EmailId or wrong password');
+                                  emailInfoController.changeError(
+                                      'Invalid EmailId or wrong password');
                                   Get.snackbar(
                                     "Error",
                                     emailInfoController.error.toString(),
-                                    icon: Icon(Icons.error, color: Colors.white),
+                                    icon:
+                                        Icon(Icons.error, color: Colors.white),
                                     backgroundColor: Colors.black12,
                                     snackPosition: SnackPosition.BOTTOM,
                                   );
                                 }
-                              }else{
-                                emailInfoController.changeError((emailInfoController.email.toString()=="")?"email can't be empty":"password should contain min. 8 characters");
+                              } else {
+                                emailInfoController.changeError(
+                                    (emailInfoController.email.toString() == "")
+                                        ? "email can't be empty"
+                                        : "password should contain min. 8 characters");
                                 Get.snackbar(
                                   "Error",
                                   emailInfoController.error.toString(),
@@ -178,51 +190,94 @@ class Login extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text("Don't have an account?"),
-                                Text(" Sign Up",style: TextStyle(color: Colors.blue),)
+                                Text(
+                                  " Sign Up",
+                                  style: TextStyle(color: Colors.blue),
+                                )
                               ],
                             ),
                           ),
-                          Text("Or sign In using"),
-                          MaterialButton(
-                            onPressed: (){},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset('images/google.png',height: 25,),
-                                ),
-                                Text("Google"),
-                              ],
+                          Text("Or sign Up"),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              color: Colors.grey,
+                              onPressed: () async {
+                                dynamic result = await _auth.signInWithGoogle();
+                                if (result == null) {
+                                  emailInfoController.changeError(
+                                      'Something went wrong, try again later...');
+                                  Get.snackbar(
+                                    "Error",
+                                    emailInfoController.error.toString(),
+                                    icon:
+                                        Icon(Icons.error, color: Colors.white),
+                                    backgroundColor: Colors.black12,
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                } else {
+                                  emailInfoController
+                                      .changeError('Successfully Signed In');
+                                  Get.snackbar(
+                                    "Success",
+                                    emailInfoController.error.toString(),
+                                    icon: Icon(Icons.check_circle,
+                                        color: Colors.green),
+                                    backgroundColor: Colors.white,
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                }
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.asset(
+                                      'images/google.png',
+                                      height: 25,
+                                    ),
+                                  ),
+                                  Text(" With Google"),
+                                ],
+                              ),
                             ),
                           ),
-                          MaterialButton(
-                            onPressed: (){},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset('images/Facebook.png',height: 25,),
-                                ),
-                                Text("Facebook"),
-                              ],
-                            ),
-                          ),
-                          MaterialButton(
-                            onPressed: (){},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset('images/Microsoft.png',height: 25,),
-                                ),
-                                Text("Microsoft"),
-                              ],
-                            ),
-                          )
-
+                          // MaterialButton(
+                          //   color: Colors.grey,
+                          //   onPressed: (){},
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.center,
+                          //     children: [
+                          //       Padding(
+                          //         padding: const EdgeInsets.all(8.0),
+                          //         child: Image.asset('images/Facebook.png',height: 25,),
+                          //       ),
+                          //       Text("Facebook"),
+                          //     ],
+                          //   ),
+                          // ),
+                          // MaterialButton(
+                          //   color: Colors.grey,
+                          //   onPressed: (){},
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.center,
+                          //     children: [
+                          //       Padding(
+                          //         padding: const EdgeInsets.all(8.0),
+                          //         child: Image.asset('images/Microsoft.png',height: 25,),
+                          //       ),
+                          //       Text("Microsoft"),
+                          //     ],
+                          //   ),
+                          // )
+                          // Padding(
+                          //   padding: EdgeInsets.only(top: 50, bottom: 20),
+                          //   child: Text("@ VidyudhanuLabs"),
+                          // ),
                         ],
                       ),
                     ),
@@ -236,4 +291,3 @@ class Login extends StatelessWidget {
     );
   }
 }
-

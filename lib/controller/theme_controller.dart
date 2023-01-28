@@ -7,7 +7,7 @@ class ThemeController extends GetxController{
   var theme = "light".obs;
   var themeColors = [
     Colors.black,
-    Colors.white24,
+    Colors.black26,
     Colors.white38,
     Colors.white60,
     Colors.white,

@@ -1,9 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:news_app/services/auth.dart';
 import 'package:news_app/services/remote_services.dart';
 
 import '../models/articles.dart';
 
+
 class NewsController extends GetxController{
+
+  AuthService authService = Get.put(AuthService());
   var articleList = <Article?>[].obs;
   var totalRes = 1.obs;
   var status = "".obs;
@@ -14,6 +20,7 @@ class NewsController extends GetxController{
   @override
   void onInit(){
     fetchNews();
+    if(FirebaseAuth.instance.currentUser==null)authService.signOut();
     super.onInit();
   }
 

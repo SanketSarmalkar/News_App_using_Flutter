@@ -4,7 +4,7 @@ class ThemeColorData {
 
   final List<Color> lightColor =[
     Colors.black,
-    Colors.white24,
+    Colors.black26,
     Colors.white38,
     Colors.white60,
     Colors.white,

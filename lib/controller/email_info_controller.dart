@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import '../services/auth.dart';
 
 class EmailInfoController extends GetxController{
+    var isVerified = true.obs;
     var email = "".obs;
     var password = "".obs;
+    var name = "".obs;
     var error = "".obs;
     var showPassword = true.obs;
 
@@ -20,6 +22,9 @@ class EmailInfoController extends GetxController{
     }
     void changeShowPassword(){
         showPassword.value = !showPassword.value;
+    }
+    void verificationMode(bool k){
+        isVerified.value = k;
     }
 
 

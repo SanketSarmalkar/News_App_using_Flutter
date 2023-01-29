@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:news_app/controller/email_info_controller.dart';
@@ -34,6 +35,7 @@ class AuthService {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
+      if(_auth.currentUser!.emailVerified)emailInfoController.verificationMode(true);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -47,15 +49,24 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-      final actionCodeSettings = ActionCodeSettings(
-        url: "http://www.example.com/verify?email=${user?.email}",
-        iOSBundleId: "com.example.ios",
-        androidPackageName: "com.example.android",
-      );
-      await user!.sendEmailVerification(actionCodeSettings);
-      return _userFromFirebaseUser(user);
+      // final actionCodeSettings = ActionCodeSettings(
+      //   url: "http://www.example.com/verify?email=${user?.email}",
+      //   iOSBundleId: "com.example.ios",
+      //   androidPackageName: "com.example.android",
+      // );
+      await user!.sendEmailVerification();
+      // //return _userFromFirebaseUser(user);
+      // Get.snackbar(
+      //   "Success",
+      //   "Successfully registered..",
+      //   icon: const Icon(Icons.check_circle, color: Colors.green),
+      //   backgroundColor: Colors.black12,
+      //   snackPosition: SnackPosition.BOTTOM,
+      // );
+      await _auth.signOut();
+      return 1;
     } catch (e) {
-      print(e.toString());
+      print(e.toString()+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
       return null;
     }
   }
@@ -66,6 +77,7 @@ class AuthService {
       GoogleSignIn googleSignIn = GoogleSignIn();
       await googleSignIn.signOut();
       await _auth.signOut();
+      emailInfoController.verificationMode(false);
       return _userFromFirebaseUser(null);
     } catch (e) {
       print(e.toString());
@@ -94,7 +106,7 @@ class AuthService {
       UserCredential result = await _auth.signInWithCredential(credential);
 
       User? user = result.user;
-
+      emailInfoController.verificationMode(true);
       return _userFromFirebaseUser(user);
     }catch(e){
       print(e);

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/models/query_types.dart';
@@ -27,20 +28,41 @@ class _AppBarModeState extends State<AppBarMode> {
   Widget build(BuildContext context) {
     return Obx(
       ()=> AppBar(
-        leading: Builder(
+        actions:<Widget> [Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: Icon(
-                Icons.menu,
-                color: themeController.themeColors[0], // Change Custom Drawer Icon Color
+              // icon: Icon(
+              //   Icons.menu,
+              //   color: themeController.themeColors[0], // Change Custom Drawer Icon Color
+              // ),
+              icon: Image.network(
+                FirebaseAuth.instance.currentUser!.photoURL.toString(),
+
+                fit: BoxFit.fill,
+                // if the image is null
+                errorBuilder: (BuildContext context, Object exception,
+                    StackTrace? stackTrace) {
+                  return Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                      height: 200,
+                      width: double.infinity,
+                      child: Icon(Icons.person),
+                    ),
+                  );
+                },
               ),
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                Scaffold.of(context).openEndDrawer();
               },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           },
-        ),
+        ),],
+        leadingWidth: 0,
         //backgroundColor: Colors.blue[900],
         backgroundColor: themeController.themeColors[4],
         title: Text(

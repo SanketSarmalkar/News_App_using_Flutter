@@ -43,7 +43,7 @@ class _SideBarContentState extends State<SideBarContent> {
                 ),
                 accountName: Text(
                   //emailInfoController.name.toString(),
-                  (FirebaseAuth.instance.currentUser!.displayName.toString() ==
+                  (FirebaseAuth.instance.currentUser!.displayName !=
                           null)
                       ? FirebaseAuth.instance.currentUser!.displayName
                           .toString()

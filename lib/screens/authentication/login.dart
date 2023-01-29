@@ -3,11 +3,19 @@ import 'package:get/get.dart';
 import 'package:news_app/controller/email_info_controller.dart';
 import 'package:news_app/services/auth.dart';
 
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  final Function changeK;
+  const Login({Key? key, required this.changeK}) : super(key: key);
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final _formkey = GlobalKey<FormState>();
+
   final AuthService _auth = AuthService();
+
   EmailInfoController emailInfoController = Get.put(EmailInfoController());
 
   @override
@@ -184,7 +192,7 @@ class Login extends StatelessWidget {
                           ),
                           MaterialButton(
                             onPressed: () {
-                              Get.toNamed("/signup");
+                              widget.changeK();
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

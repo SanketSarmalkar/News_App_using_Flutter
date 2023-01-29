@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../services/auth.dart';
 
 class EmailInfoController extends GetxController{
-    var isVerified = true.obs;
+    var isVerified = false.obs;
     var email = "".obs;
     var password = "".obs;
     var name = "".obs;

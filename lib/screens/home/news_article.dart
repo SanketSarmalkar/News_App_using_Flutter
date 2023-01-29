@@ -20,10 +20,25 @@ class _NewsArticleState extends State<NewsArticle> {
       appBar: AppBar(
         //backgroundColor: Colors.blue[900],
         backgroundColor: themeController.themeColors[4],
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: themeController
+                    .themeColors[0], // Change Custom Drawer Icon Color
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
-      body: WebViewApp(websiteUrl: Get.parameters['websiteUrl']!,),
-      );
+      ),
+      body: WebViewApp(
+        websiteUrl: Get.parameters['websiteUrl']!,
+      ),
+    );
   }
 }
-
-

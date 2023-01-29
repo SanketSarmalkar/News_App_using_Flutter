@@ -3,11 +3,19 @@ import 'package:get/get.dart';
 import 'package:news_app/controller/email_info_controller.dart';
 import 'package:news_app/services/auth.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  final Function changeK;
+  const SignUp({Key? key, required this.changeK}) : super(key: key);
 
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   final _formkey = GlobalKey<FormState>();
+
   final AuthService _auth = AuthService();
+
   EmailInfoController emailInfoController = Get.put(EmailInfoController());
 
   @override
@@ -150,12 +158,20 @@ class SignUp extends StatelessWidget {
                                     emailInfoController.error.toString(),
                                     icon:
                                         Icon(Icons.error, color: Colors.white),
+                                    backgroundColor: Colors.white,
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                }if(result!=null){
+                                  widget.changeK();
+                                  Get.snackbar(
+                                    "Success",
+                                    "Successfully registered, Please verify your email Id from the email sent.",
+                                    icon:
+                                    Icon(Icons.error, color: Colors.white),
                                     backgroundColor: Colors.black12,
                                     snackPosition: SnackPosition.BOTTOM,
                                   );
-                                }if(_auth.emailVerified()){
-                                   emailInfoController.isVerified(true);
-                                 }
+                                }
                               } else {
                                 emailInfoController.changeError(
                                     (emailInfoController.email.toString() == "")
@@ -180,7 +196,7 @@ class SignUp extends StatelessWidget {
                           ),
                           MaterialButton(
                             onPressed: () {
-                              Get.back();
+                              widget.changeK();
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

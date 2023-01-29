@@ -1,5 +1,6 @@
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
+import 'package:news_app/screens/authentication/authentication_wrapper.dart';
 
 import '../screens/home/home.dart';
 import '../screens/authentication/login.dart';
@@ -19,14 +20,14 @@ class AppRoutes {
       name: "/newsArticle",
       page: () => NewsArticle(),
     ),
-    GetPage(
-      name: "/login",
-      page: () => Login(),
-    ),
-    GetPage(
-      name: '/signup',
-      page: () => SignUp(),
-    ),
+    // GetPage(
+    //   name: "/login",
+    //   page: () => Login(,),
+    // ),
+    // GetPage(
+    //   name: '/signup',
+    //   page: () => SignUp(),
+    // ),
     GetPage(
       name: '/wrapper',
       page: () => Wrapper(),

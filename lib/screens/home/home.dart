@@ -10,10 +10,18 @@ import '../../components/side_bar.dart';
 import '../../controller/newscontroller.dart';
 import 'package:animated_card/animated_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   NewsController newsController = Get.put(NewsController());
+
   ThemeController themeController = Get.put(ThemeController());
+
   var query = Queries();
 
   @override
@@ -22,11 +30,12 @@ class HomePage extends StatelessWidget {
       ()=> Scaffold(
         //backgroundColor: Colors.blue[400],
         backgroundColor: themeController.themeColors[3],
-        drawer: Drawer(
+        endDrawer: Drawer(
           child: SideBarContent(),
         ),
         appBar: AppBarMode(
           title: "NewsApp",
+
         ),
         body: Column(
           children: [

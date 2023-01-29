@@ -29,9 +29,8 @@ class _NewsArticleState extends State<NewsArticle> {
                     .themeColors[0], // Change Custom Drawer Icon Color
               ),
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                Get.back();
               },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           },
         ),

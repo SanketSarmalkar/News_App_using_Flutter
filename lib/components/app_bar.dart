@@ -35,25 +35,29 @@ class _AppBarModeState extends State<AppBarMode> {
               //   Icons.menu,
               //   color: themeController.themeColors[0], // Change Custom Drawer Icon Color
               // ),
-              icon: Image.network(
-                FirebaseAuth.instance.currentUser!.photoURL.toString(),
+              
+              icon: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  FirebaseAuth.instance.currentUser!.photoURL.toString(),
 
-                fit: BoxFit.fill,
-                // if the image is null
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace? stackTrace) {
-                  return Card(
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Container(
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                      height: 200,
-                      width: double.infinity,
-                      child: Icon(Icons.person),
-                    ),
-                  );
-                },
+                  fit: BoxFit.fill,
+                  // if the image is null
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    return Card(
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Container(
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                        height: 200,
+                        width: double.infinity,
+                        child: Icon(Icons.person),
+                      ),
+                    );
+                  },
+                ),
               ),
               onPressed: () {
                 Scaffold.of(context).openEndDrawer();

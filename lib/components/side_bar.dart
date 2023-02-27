@@ -72,23 +72,26 @@ class _SideBarContentState extends State<SideBarContent> {
                 //     style: const TextStyle(fontSize: 30.0, color: Colors.blue),
                 //   ), //Text
                 // ), //circleAvatar
-                currentAccountPicture: Image.network(
-                  FirebaseAuth.instance.currentUser!.photoURL.toString(),
-                  fit: BoxFit.fill,
-                  // if the image is null
-                  errorBuilder: (BuildContext context, Object exception,
-                      StackTrace? stackTrace) {
-                    return Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: SizedBox(
-                        height: 200,
-                        width: double.infinity,
-                        child: Icon(Icons.person),
-                      ),
-                    );
-                  },
+                currentAccountPicture: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.network(
+                    FirebaseAuth.instance.currentUser!.photoURL.toString(),
+                    fit: BoxFit.fill,
+                    // if the image is null
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      return Card(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: SizedBox(
+                          height: 200,
+                          width: double.infinity,
+                          child: Icon(Icons.person),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ), //UserAccountDrawerHeader
             ), //DrawerHeader

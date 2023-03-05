@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hive/hive.dart';
 import 'package:news_app/init/app_route.dart';
 import 'package:news_app/models/user.dart';
 import 'package:get/get.dart';

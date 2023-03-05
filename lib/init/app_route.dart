@@ -1,10 +1,9 @@
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
-import 'package:news_app/screens/authentication/authentication_wrapper.dart';
 
 import '../screens/home/home.dart';
-import '../screens/authentication/login.dart';
 import '../screens/home/news_article.dart';
+// ignore: unused_import
 import '../screens/authentication/signup.dart';
 import '../screens/wrapper.dart';
 
@@ -18,7 +17,7 @@ class AppRoutes {
     ),
     GetPage(
       name: "/newsArticle",
-      page: () => NewsArticle(),
+      page: () => const NewsArticle(),
     ),
     // GetPage(
     //   name: "/login",
@@ -30,7 +29,7 @@ class AppRoutes {
     // ),
     GetPage(
       name: '/wrapper',
-      page: () => Wrapper(),
+      page: () => const Wrapper(),
     ),
   ];
 }

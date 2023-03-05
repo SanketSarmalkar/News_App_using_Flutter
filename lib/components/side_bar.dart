@@ -6,7 +6,6 @@ import 'package:news_app/controller/email_info_controller.dart';
 import 'package:news_app/controller/theme_controller.dart';
 import 'package:news_app/models/query_types.dart';
 import 'package:news_app/services/auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controller/newscontroller.dart';
 
@@ -39,12 +38,11 @@ class _SideBarContentState extends State<SideBarContent> {
               ), //BoxDecoration
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
-                    color: themeController.themeColors[1],
+                  color: themeController.themeColors[1],
                 ),
                 accountName: Text(
                   //emailInfoController.name.toString(),
-                  (FirebaseAuth.instance.currentUser!.displayName !=
-                          null)
+                  (FirebaseAuth.instance.currentUser!.displayName != null)
                       ? FirebaseAuth.instance.currentUser!.displayName
                           .toString()
                       : FirebaseAuth.instance.currentUser!.email
@@ -84,7 +82,7 @@ class _SideBarContentState extends State<SideBarContent> {
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        child: SizedBox(
+                        child: const SizedBox(
                           height: 200,
                           width: double.infinity,
                           child: Icon(Icons.person),
@@ -233,13 +231,15 @@ class _SideBarContentState extends State<SideBarContent> {
                   ),
                   ObxValue(
                     (data) => Switch(
+                      // ignore: unrelated_type_equality_checks
                       value: (themeController.theme == "light") ? true : false,
                       onChanged: (val) {
                         themeController.changeTheme();
+                        // ignore: unrelated_type_equality_checks
                         Get.changeThemeMode((themeController.theme != "light")
                             ? ThemeMode.light
                             : ThemeMode.dark);
-                        print(themeController.theme);
+                        //print(themeController.theme);
                       },
                     ),
                     false.obs,
@@ -259,7 +259,7 @@ class _SideBarContentState extends State<SideBarContent> {
                     Get.snackbar(
                       "Error",
                       "Error occured during Signing Out, Try Again",
-                      icon: Icon(Icons.error, color: Colors.white),
+                      icon: const Icon(Icons.error, color: Colors.white),
                       backgroundColor: Colors.black12,
                       snackPosition: SnackPosition.BOTTOM,
                     );
@@ -267,7 +267,7 @@ class _SideBarContentState extends State<SideBarContent> {
                     Get.snackbar(
                       "Success",
                       "Signed Out Successfully",
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.check_circle,
                         color: Colors.green,
                       ),
@@ -276,11 +276,11 @@ class _SideBarContentState extends State<SideBarContent> {
                     );
                   }
                 },
-                child: Text(
+                color: const Color.fromARGB(240, 13, 71, 161),
+                child: const Text(
                   "Sign Out",
                   style: TextStyle(color: Colors.white),
                 ),
-                color: Color.fromARGB(240, 13, 71, 161),
               ),
             )
           ],

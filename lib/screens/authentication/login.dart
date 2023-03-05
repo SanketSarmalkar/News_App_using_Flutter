@@ -12,7 +12,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final _formkey = GlobalKey<FormState>();
+  //final _formkey = GlobalKey<FormState>();
 
   final AuthService _auth = AuthService();
 
@@ -55,7 +55,7 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Padding(
@@ -69,67 +69,67 @@ class _LoginState extends State<Login> {
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.email),
+                                prefixIcon: const Icon(Icons.email),
                                 hintText: 'email',
                                 fillColor: Colors.black12,
                                 filled: true,
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                errorStyle: TextStyle(color: Colors.grey),
+                                errorStyle: const TextStyle(color: Colors.grey),
                               ),
                               onChanged: (val) {
                                 emailInfoController.changeEmail(val);
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               obscureText:
                                   emailInfoController.showPassword.value,
                               decoration: InputDecoration(
                                 suffixIcon: GestureDetector(
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.remove_red_eye,
                                   ),
                                   onTap: () {
                                     emailInfoController.changeShowPassword();
                                   },
                                 ),
-                                prefixIcon: Icon(Icons.lock),
+                                prefixIcon: const Icon(Icons.lock),
                                 hintText: 'password',
                                 fillColor: Colors.black12,
                                 filled: true,
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -139,7 +139,7 @@ class _LoginState extends State<Login> {
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           MaterialButton(
@@ -149,6 +149,7 @@ class _LoginState extends State<Login> {
                             ),
                             color: Colors.grey,
                             onPressed: () async {
+                              // ignore: unrelated_type_equality_checks
                               if (emailInfoController.email != "" &&
                                   emailInfoController.password
                                           .toString()
@@ -165,8 +166,8 @@ class _LoginState extends State<Login> {
                                   Get.snackbar(
                                     "Error",
                                     emailInfoController.error.toString(),
-                                    icon:
-                                        Icon(Icons.error, color: Colors.white),
+                                    icon: const Icon(Icons.error,
+                                        color: Colors.white),
                                     backgroundColor: Colors.black12,
                                     snackPosition: SnackPosition.BOTTOM,
                                   );
@@ -179,13 +180,14 @@ class _LoginState extends State<Login> {
                                 Get.snackbar(
                                   "Error",
                                   emailInfoController.error.toString(),
-                                  icon: Icon(Icons.error, color: Colors.white),
+                                  icon: const Icon(Icons.error,
+                                      color: Colors.white),
                                   backgroundColor: Colors.black12,
                                   snackPosition: SnackPosition.BOTTOM,
                                 );
                               }
                             },
-                            child: Text(
+                            child: const Text(
                               "Login",
                               style: TextStyle(fontSize: 18),
                             ),
@@ -196,7 +198,7 @@ class _LoginState extends State<Login> {
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                              children: const [
                                 Text("Don't have an account?"),
                                 Text(
                                   " Sign Up",
@@ -205,7 +207,7 @@ class _LoginState extends State<Login> {
                               ],
                             ),
                           ),
-                          Text("Or sign Up"),
+                          const Text("Or sign Up"),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: MaterialButton(
@@ -221,8 +223,8 @@ class _LoginState extends State<Login> {
                                   Get.snackbar(
                                     "Error",
                                     emailInfoController.error.toString(),
-                                    icon:
-                                        Icon(Icons.error, color: Colors.white),
+                                    icon: const Icon(Icons.error,
+                                        color: Colors.white),
                                     backgroundColor: Colors.black12,
                                     snackPosition: SnackPosition.BOTTOM,
                                   );
@@ -232,7 +234,7 @@ class _LoginState extends State<Login> {
                                   Get.snackbar(
                                     "Success",
                                     emailInfoController.error.toString(),
-                                    icon: Icon(Icons.check_circle,
+                                    icon: const Icon(Icons.check_circle,
                                         color: Colors.green),
                                     backgroundColor: Colors.white,
                                     snackPosition: SnackPosition.BOTTOM,
@@ -249,7 +251,7 @@ class _LoginState extends State<Login> {
                                       height: 25,
                                     ),
                                   ),
-                                  Text(" With Google"),
+                                  const Text(" With Google"),
                                 ],
                               ),
                             ),

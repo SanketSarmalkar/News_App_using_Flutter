@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:news_app/controller/email_info_controller.dart';
 import 'package:news_app/models/user.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -35,10 +33,12 @@ class AuthService {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-      if(_auth.currentUser!.emailVerified)emailInfoController.verificationMode(true);
+      if (_auth.currentUser!.emailVerified) {
+        emailInfoController.verificationMode(true);
+      }
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print(e.toString());
+      //print(e.toString());
       return null;
     }
   }
@@ -66,7 +66,7 @@ class AuthService {
       await _auth.signOut();
       return 1;
     } catch (e) {
-      print(e.toString()+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+      //print(e.toString()+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
       return null;
     }
   }
@@ -80,14 +80,14 @@ class AuthService {
       emailInfoController.verificationMode(false);
       return _userFromFirebaseUser(null);
     } catch (e) {
-      print(e.toString());
+      //print(e.toString());
       return null;
     }
   }
 
   // signInwithGoogle
   Future signInWithGoogle() async {
-    try{
+    try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser =
           await GoogleSignIn(scopes: <String>["email"]).signIn();
@@ -108,8 +108,8 @@ class AuthService {
       User? user = result.user;
       emailInfoController.verificationMode(true);
       return _userFromFirebaseUser(user);
-    }catch(e){
-      print(e);
+    } catch (e) {
+      //print(e);
       return null;
     }
   }

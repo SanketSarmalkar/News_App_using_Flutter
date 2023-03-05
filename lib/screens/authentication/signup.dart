@@ -12,7 +12,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _formkey = GlobalKey<FormState>();
+  //final _formkey = GlobalKey<FormState>();
 
   final AuthService _auth = AuthService();
 
@@ -33,8 +33,8 @@ class _SignUpState extends State<SignUp> {
                       color: Colors.white30,
                       borderRadius: BorderRadius.circular(20)),
                   width: 300,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(20.0),
                     child: Center(
                         child: Text(
                       "News App",
@@ -46,7 +46,7 @@ class _SignUpState extends State<SignUp> {
                     )),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Padding(
@@ -60,67 +60,67 @@ class _SignUpState extends State<SignUp> {
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.email),
+                                prefixIcon: const Icon(Icons.email),
                                 hintText: 'email',
                                 fillColor: Colors.black12,
                                 filled: true,
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                errorStyle: TextStyle(color: Colors.grey),
+                                errorStyle: const TextStyle(color: Colors.grey),
                               ),
                               onChanged: (val) {
                                 emailInfoController.changeEmail(val);
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               obscureText:
                                   emailInfoController.showPassword.value,
                               decoration: InputDecoration(
                                 suffixIcon: GestureDetector(
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.remove_red_eye,
                                   ),
                                   onTap: () {
                                     emailInfoController.changeShowPassword();
                                   },
                                 ),
-                                prefixIcon: Icon(Icons.lock),
+                                prefixIcon: const Icon(Icons.lock),
                                 hintText: 'password',
                                 fillColor: Colors.black12,
                                 filled: true,
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Colors.white24, width: 2.0),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -130,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           MaterialButton(
@@ -140,6 +140,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                             color: Colors.grey,
                             onPressed: () async {
+                              // ignore: unrelated_type_equality_checks
                               if (emailInfoController.email != "" &&
                                   emailInfoController.password
                                           .toString()
@@ -156,18 +157,19 @@ class _SignUpState extends State<SignUp> {
                                   Get.snackbar(
                                     "Error",
                                     emailInfoController.error.toString(),
-                                    icon:
-                                        Icon(Icons.error, color: Colors.white),
+                                    icon: const Icon(Icons.error,
+                                        color: Colors.white),
                                     backgroundColor: Colors.white,
                                     snackPosition: SnackPosition.BOTTOM,
                                   );
-                                }if(result!=null){
+                                }
+                                if (result != null) {
                                   widget.changeK();
                                   Get.snackbar(
                                     "Success",
                                     "Successfully registered, Please verify your email Id from the email sent.",
-                                    icon:
-                                    Icon(Icons.error, color: Colors.white),
+                                    icon: const Icon(Icons.error,
+                                        color: Colors.white),
                                     backgroundColor: Colors.black12,
                                     snackPosition: SnackPosition.BOTTOM,
                                   );
@@ -180,18 +182,19 @@ class _SignUpState extends State<SignUp> {
                                 Get.snackbar(
                                   "Error",
                                   emailInfoController.error.toString(),
-                                  icon: Icon(Icons.error, color: Colors.white),
+                                  icon: const Icon(Icons.error,
+                                      color: Colors.white),
                                   backgroundColor: Colors.black12,
                                   snackPosition: SnackPosition.BOTTOM,
                                 );
                               }
                             },
-                            child: Text(
+                            child: const Text(
                               "Sign Up",
                               style: TextStyle(fontSize: 18),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           MaterialButton(
@@ -200,7 +203,7 @@ class _SignUpState extends State<SignUp> {
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                              children: const [
                                 Text("Have an account already?"),
                                 Text(
                                   " Log In",

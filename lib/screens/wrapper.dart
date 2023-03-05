@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
 import '../models/user.dart';
+// ignore: unused_import
 import 'authentication/login.dart';
-
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -18,16 +18,15 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
-   EmailInfoController emailInfoController = Get.put(EmailInfoController());
+  EmailInfoController emailInfoController = Get.put(EmailInfoController());
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserUid?>(context);
-    print(user);
-    if(user!=null && FirebaseAuth.instance.currentUser!.emailVerified){
+    //print(user);
+    if (user != null && FirebaseAuth.instance.currentUser!.emailVerified) {
       return HomePage();
-    }else{
-      return AuthenticationWrapper();
+    } else {
+      return const AuthenticationWrapper();
     }
   }
 }
-

@@ -1,21 +1,18 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive/hive.dart';
 import 'package:news_app/init/app_route.dart';
-import 'package:news_app/models/themes.dart';
 import 'package:news_app/models/user.dart';
-import 'package:news_app/screens/home/home.dart';
-import 'package:news_app/screens/authentication/login.dart';
 import 'package:get/get.dart';
+// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:news_app/services/auth.dart';
 import 'package:provider/provider.dart';
 
 //    ./gradlew signingReport
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -32,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   // final ThemeData _darkTheme = ThemeData(
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     if (FirebaseAuth.instance.currentUser == null) {
       GoogleSignIn googleSignIn = GoogleSignIn();
@@ -40,6 +38,7 @@ class _MyAppState extends State<MyApp> {
     }
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     //if(FirebaseAuth.instance.currentUser!.uid==null)AuthService().signOut();

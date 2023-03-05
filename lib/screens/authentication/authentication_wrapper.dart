@@ -11,12 +11,13 @@ class AuthenticationWrapper extends StatefulWidget {
 
 class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   bool k = true;
-  void changeK(){
-    print("hell");
-    setState(()=>k = !k);
+  void changeK() {
+    //print("hell");
+    setState(() => k = !k);
   }
+
   @override
   Widget build(BuildContext context) {
-    return (k)?Login(changeK: changeK):SignUp(changeK: changeK);
+    return (k) ? Login(changeK: changeK) : SignUp(changeK: changeK);
   }
 }

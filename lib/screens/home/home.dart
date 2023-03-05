@@ -1,15 +1,14 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:news_app/components/app_bar.dart';
 import 'package:news_app/controller/theme_controller.dart';
-import 'package:news_app/models/articles.dart';
 import 'package:news_app/models/query_types.dart';
 import '../../components/side_bar.dart';
 import '../../controller/newscontroller.dart';
 import 'package:animated_card/animated_card.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -22,15 +21,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      ()=> Scaffold(
+      () => Scaffold(
         //backgroundColor: Colors.blue[400],
         backgroundColor: themeController.themeColors[3],
-        endDrawer: Drawer(
+        endDrawer: const Drawer(
           child: SideBarContent(),
         ),
         appBar: AppBarMode(
           title: "NewsApp",
-
         ),
         body: Column(
           children: [
@@ -59,12 +57,13 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
               child: GestureDetector(
-                onHorizontalDragDown: (context){
+                onHorizontalDragDown: (context) {
                   newsController.fetchNews();
                 },
-                 child: Obx(
+                child: Obx(
                   () => Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+                    padding:
+                        const EdgeInsets.only(left: 8, right: 8, bottom: 8),
                     child: MasonryGridView.count(
                         crossAxisCount: 1,
                         mainAxisSpacing: 8,
@@ -74,7 +73,7 @@ class HomePage extends StatelessWidget {
                             child: Card(
                               // elevation: 50,
                               // shadowColor: Colors.black,
-                             // color: Colors.blue[600],
+                              // color: Colors.blue[600],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                                 //set border radius more than 50% of height and width to make circle
@@ -85,13 +84,15 @@ class HomePage extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Image.network(
-                                      newsController.articleList[index]?.urlToImage
+                                      newsController
+                                              .articleList[index]?.urlToImage
                                               .toString() ??
                                           "",
                                       fit: BoxFit.fill,
                                       // if the image is null
                                       errorBuilder: (BuildContext context,
-                                          Object exception, StackTrace? stackTrace) {
+                                          Object exception,
+                                          StackTrace? stackTrace) {
                                         return Card(
                                           elevation: 0,
                                           shape: RoundedRectangleBorder(
@@ -100,7 +101,8 @@ class HomePage extends StatelessWidget {
                                           child: const SizedBox(
                                             height: 200,
                                             width: double.infinity,
-                                            child: Icon(Icons.broken_image_outlined),
+                                            child: Icon(
+                                                Icons.broken_image_outlined),
                                           ),
                                         );
                                       },
@@ -122,37 +124,38 @@ class HomePage extends StatelessWidget {
                                       height: 10,
                                     ),
                                     Text(
-                                      "Published On : ${
-                                        newsController
-                                            .articleList[index]!.publishedAt
-                                            .toString()
-                                            .substring(0, 19)
-                                      }",
+                                      "Published On : ${newsController.articleList[index]!.publishedAt.toString().substring(0, 19)}",
                                       style: TextStyle(
-                                        fontSize: 13,
-                                        //color: Colors.blue[100],
-                                        color: themeController.themeColors[0]
-                                      ),
+                                          fontSize: 13,
+                                          //color: Colors.blue[100],
+                                          color:
+                                              themeController.themeColors[0]),
                                       textAlign: TextAlign.left,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
-                                        (newsController.articleList[index]!.description.toString()!="")?newsController.articleList[index]!.description
-                                              .toString() :
-                                          "",
+                                      (newsController.articleList[index]!
+                                                  .description
+                                                  .toString() !=
+                                              "")
+                                          ? newsController
+                                              .articleList[index]!.description
+                                              .toString()
+                                          : "",
                                       style: TextStyle(
-                                        fontSize: 15,
-                                        //color: Colors.blue[100],
-                                        color: themeController.themeColors[0]
-                                      ),
+                                          fontSize: 15,
+                                          //color: Colors.blue[100],
+                                          color:
+                                              themeController.themeColors[0]),
                                     ), //Text
                                     const SizedBox(
                                       height: 10,
                                     ), //SizedBox
                                     Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           MaterialButton(
                                             onPressed: () {
@@ -160,17 +163,19 @@ class HomePage extends StatelessWidget {
                                                   "/newsArticle?websiteUrl=${newsController.articleList[index]!.url.toString()}");
                                             },
                                             //color: Colors.blue[800],
-                                            color: themeController.themeColors[0],
+                                            color:
+                                                themeController.themeColors[0],
                                             child: Padding(
-                                              padding: const EdgeInsets.all(4.0),
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
                                               child: Row(
                                                 children: [
                                                   Text(
                                                     'Learn More',
                                                     style: TextStyle(
-                                                      //color: Colors.blue[50],
-                                                      color: themeController.themeColors[4]
-                                                    ),
+                                                        //color: Colors.blue[50],
+                                                        color: themeController
+                                                            .themeColors[4]),
                                                   ),
                                                 ],
                                               ), //Row

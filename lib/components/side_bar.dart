@@ -30,7 +30,9 @@ class _SideBarContentState extends State<SideBarContent> {
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        color: themeController.themeColors[4],
+        decoration: BoxDecoration(
+          color: themeController.themeColors[4],
+        ),
         child: ListView(
           padding: const EdgeInsets.all(0),
           children: [
@@ -83,7 +85,8 @@ class _SideBarContentState extends State<SideBarContent> {
                       return Card(
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         child: const SizedBox(
                           height: 200,
                           width: double.infinity,
@@ -134,6 +137,10 @@ class _SideBarContentState extends State<SideBarContent> {
                           value: newsController.country.toString(),
                           dropdownWidth: 125,
                           itemPadding: const EdgeInsets.all(4),
+                          dropdownDecoration: BoxDecoration(
+                            color: themeController.themeColors[4],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           items: query.countries
                               .map((String ctr) => DropdownMenuItem(
                                     value: ctr,
@@ -142,8 +149,10 @@ class _SideBarContentState extends State<SideBarContent> {
                                         padding: const EdgeInsets.all(5.0),
                                         child: Text(
                                           ctr.toString(),
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             overflow: TextOverflow.ellipsis,
+                                            color:
+                                                themeController.themeColors[0],
                                           ),
                                         ),
                                       ),
@@ -198,15 +207,26 @@ class _SideBarContentState extends State<SideBarContent> {
                           value: newsController.category.toString(),
                           dropdownWidth: 125,
                           itemPadding: const EdgeInsets.all(4),
-                          itemSplashColor: themeController.themeColors[4],
+                          dropdownDecoration: BoxDecoration(
+                            color: themeController.themeColors[4],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           items: query.categories
                               .map((String ctr) => DropdownMenuItem(
                                     value: ctr,
                                     child: Row(children: [
                                       Padding(
                                         padding: const EdgeInsets.all(2.0),
-                                        child: Text(
-                                          ctr.toString(),
+                                        child: Center(
+                                          child: Text(
+                                            ctr.toString(),
+                                            style: TextStyle(
+                                              color: themeController
+                                                  .themeColors[0],
+                                              backgroundColor: themeController
+                                                  .themeColors[4],
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ]),

@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:news_app/services/auth.dart';
 import 'package:news_app/services/remote_services.dart';
 
 import '../models/articles.dart';
 
 class NewsController extends GetxController {
+  final _myBox = Hive.box("mybox");
   AuthService authService = Get.put(AuthService());
   var articleList = <Article?>[].obs;
   var totalRes = 1.obs;
@@ -17,12 +19,15 @@ class NewsController extends GetxController {
   @override
   void onInit() {
     fetchNews();
+    country.value = _myBox.get("Country");
+    category.value = _myBox.get("Category");
     if (FirebaseAuth.instance.currentUser == null) authService.signOut();
     super.onInit();
   }
 
   void fetchNews() async {
-    var news = await RemoteServices.fetchNews(country, category);
+    var news = await RemoteServices.fetchNews(
+        _myBox.get("Country"), _myBox.get("Category"));
     if (news != null) {
       articleList.value = news.articles!;
       totalRes.value = news.totalResults!;
@@ -31,10 +36,12 @@ class NewsController extends GetxController {
   }
 
   void changeCountry(var ctr) {
-    country.value = ctr;
+    _myBox.put("Country", ctr);
+    country.value = _myBox.get("Country");
   }
 
   void changeCategory(var ctr) {
-    category.value = ctr;
+    _myBox.put("Category", ctr);
+    category.value = _myBox.get("Category");
   }
 }

@@ -25,8 +25,9 @@ void main() async {
   runApp(const MyApp());
   // ignore: no_leading_underscores_for_local_identifiers
   final _myBox = Hive.box("mybox");
-  if (_myBox.get("Theme") != null) _myBox.put("Theme", "light");
-  if (_myBox.get("Country") != null) _myBox.put("Country", "in");
+  if (_myBox.get("Theme") == null) _myBox.put("Theme", "light");
+  if (_myBox.get("Country") == null) _myBox.put("Country", "in");
+  if (_myBox.get("Category") == null) _myBox.put("Category", "general");
   //print(_myBox.get("Theme"));
 }
 

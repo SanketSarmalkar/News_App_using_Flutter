@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:news_app/controller/email_info_controller.dart';
 import 'package:news_app/controller/theme_controller.dart';
 import 'package:news_app/models/query_types.dart';
@@ -21,6 +22,7 @@ class _SideBarContentState extends State<SideBarContent> {
   ThemeController themeController = Get.put(ThemeController());
   EmailInfoController emailInfoController = Get.put(EmailInfoController());
   final AuthService authService = AuthService();
+  var myBox = Hive.box('mybox');
 
   var query = Queries();
 
@@ -229,21 +231,22 @@ class _SideBarContentState extends State<SideBarContent> {
                     '${themeController.theme.toString()[0].toUpperCase() + themeController.theme.toString().substring(1, themeController.theme.toString().length)} Mode Enabled',
                     style: TextStyle(color: themeController.themeColors[0]),
                   ),
-                  ObxValue(
-                    (data) => Switch(
+                  /* ObxValue(
+                    (data) =>*/
+                  Switch(
+                    // ignore: unrelated_type_equality_checks
+                    value: (myBox.get("Theme") == "light") ? true : false,
+                    onChanged: (val) {
+                      themeController.changeTheme();
                       // ignore: unrelated_type_equality_checks
-                      value: (themeController.theme == "light") ? true : false,
-                      onChanged: (val) {
-                        themeController.changeTheme();
-                        // ignore: unrelated_type_equality_checks
-                        Get.changeThemeMode((themeController.theme != "light")
-                            ? ThemeMode.light
-                            : ThemeMode.dark);
-                        //print(themeController.theme);
-                      },
-                    ),
-                    false.obs,
+                      // Get.changeThemeMode((themeController.theme != "light")
+                      //     ? ThemeMode.light
+                      //     : ThemeMode.dark);
+                      //print(themeController.theme);
+                    },
                   ),
+                  /*false.obs,
+                  ),*/
                 ],
               ),
             ),

@@ -246,10 +246,11 @@ class _SideBarContentState extends State<SideBarContent> {
             Padding(
               padding: const EdgeInsets.only(left: 50),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    '${themeController.theme.toString()[0].toUpperCase() + themeController.theme.toString().substring(1, themeController.theme.toString().length)} Mode Enabled',
-                    style: TextStyle(color: themeController.themeColors[0]),
+                  Icon(
+                    Icons.mode_night,
+                    color: themeController.themeColors[0],
                   ),
                   /* ObxValue(
                     (data) =>*/
@@ -267,6 +268,10 @@ class _SideBarContentState extends State<SideBarContent> {
                   ),
                   /*false.obs,
                   ),*/
+                  Icon(
+                    Icons.wb_sunny,
+                    color: themeController.themeColors[0],
+                  ),
                 ],
               ),
             ),

@@ -1,4 +1,5 @@
 # news_app
+<p align="center"><img src="./images/Screenshot_20230311-215927.jpg"></p>
 
 A new Flutter project.
 

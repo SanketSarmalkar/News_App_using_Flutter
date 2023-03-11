@@ -171,7 +171,7 @@ class HomePage extends StatelessWidget {
                                               child: Row(
                                                 children: [
                                                   Text(
-                                                    'Learn More',
+                                                    'Read More',
                                                     style: TextStyle(
                                                         //color: Colors.blue[50],
                                                         color: themeController

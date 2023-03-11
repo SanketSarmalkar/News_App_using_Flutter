@@ -1,5 +1,10 @@
 # news_app
-<p><img src="./images/Screenshot_20230311-215927.jpg"></p>
+<p><img src="./images/Screenshot_20230311-215927.jpg">
+<img src="./images/Screenshot_20230311-215951.jpg">
+<img src="./images/Screenshot_20230311-220003.jpg">
+<img src="./images/Screenshot_20230311-220016.jpg">
+<img src="./images/Screenshot_20230311-220147.jpg">
+</p>
 
 A new Flutter project.
 

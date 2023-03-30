@@ -1,12 +1,14 @@
 # news_app
-<p><img src="./images/Screenshot_20230311-215927.jpg">
-<img src="./images/Screenshot_20230311-215951.jpg">
-<img src="./images/Screenshot_20230311-220003.jpg">
-<img src="./images/Screenshot_20230311-220016.jpg">
-<img src="./images/Screenshot_20230311-220147.jpg">
+<p>
+<img src="./images/Screenshot_20230311-215927.jpg" width="32%" style:"float:left">
+<img src="./images/Screenshot_20230311-215951.jpg" width="32%" style:"float:center">
+<img src="./images/Screenshot_20230311-220003.jpg" width="32%" style:"float:right">
 </p>
-
-A new Flutter project.
+<br>
+<p>
+<img src="./images/Screenshot_20230311-220016.jpg" width="32%" style:"float:center">
+<img src="./images/Screenshot_20230311-220147.jpg" width="32%" style:"float:center">
+</p>
 
 ## Getting Started
 

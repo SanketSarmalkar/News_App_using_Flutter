@@ -310,6 +310,14 @@ class _SideBarContentState extends State<SideBarContent> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
+            ),
+            Center(
+              child: Text(
+                "Developed By: Sanket S.Sarmalkar",
+                style: TextStyle(
+                    color: themeController.themeColors[0],
+                    fontWeight: FontWeight.bold),
+              ),
             )
           ],
         ),

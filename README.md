@@ -22,7 +22,8 @@ News_App is a news app built with Flutter that displays top news from newsapi.or
 <img src="./images/Screenshot_20230311-220147.jpg" width="32%" style:"float:right">
 </p>
 
-
+## Versions
+- [v1.0.0](https://drive.google.com/file/d/1bMVNWFGVAgj0p4zXw0qZkno2tg3rY38h/view?usp=share_link)
 
 ## Getting Started
 
